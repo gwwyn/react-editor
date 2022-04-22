@@ -1,0 +1,20 @@
+.toolbar-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  transition: opacity 0.1s ease-out;
+
+  &:hover {
+    background: #f2f4f6;
+  }
+
+  &.selected {
+    opacity: 1;
+  }
+}

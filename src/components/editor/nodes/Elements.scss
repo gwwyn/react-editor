@@ -1,0 +1,17 @@
+blockquote {
+  margin: 0;
+
+  &.quote {
+    padding: 10px 10px 10px 20px;
+    border-left: 4px solid rgba(0, 0, 0, .6);
+    background: rgba(242, 244, 246, .3);
+  }
+}
+
+p {
+  margin: 0;
+
+  &:not(:last-child) {
+    margin: 0 0 10px 0;
+  }
+}

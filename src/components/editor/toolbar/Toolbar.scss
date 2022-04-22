@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+
+  &-line {
+    width: 1px;
+    height: 24px;
+    background: rgba(0, 0, 0, .1);
+    margin: 0 5px;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .toolbar-button {
+    margin: 0 1px;
+  }
+}
