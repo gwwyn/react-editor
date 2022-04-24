@@ -4,7 +4,7 @@ import Button from '../../ui/button'
 import {
   addColumn,
   canAddColumn,
-  canRemoveColumn,
+  isSingleColumn,
   removeColumn,
 } from '../helpers/columnTransform'
 import { useSettings } from '../hooks/useSettings'
@@ -28,7 +28,7 @@ function GridButtons() {
       <Button
         icon='remove-column'
         label='remove column'
-        isActive={canRemoveColumn(editor)}
+        isActive={isSingleColumn(editor)}
         onClick={() => removeColumn(editor)}></Button>
       <Button
         icon='add-column'

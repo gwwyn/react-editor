@@ -14,6 +14,7 @@ import Toolbar from './toolbar/Toolbar'
 import Leaf from './nodes/Leaf'
 import Element from './nodes/Element'
 import { SettingsProvider, useSettings } from './hooks/useSettings'
+import { altKeys } from './helpers/keystrokes'
 
 type EditorProps = {
   value: Content
@@ -38,6 +39,12 @@ function Editor({ value, onSave }: EditorProps) {
   const onChange = (val: Descendant[]) => {
     onSave(val as Content)
   }
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.altKey) {
+      event.preventDefault()
+      altKeys(editor, event.key)
+    }
+  }
 
   // From https://github.com/ianstormtaylor/slate/issues/3465
   /*useEffect(() => {
@@ -52,6 +59,7 @@ function Editor({ value, onSave }: EditorProps) {
         <Toolbar />
         <Editable
           className='editor-content'
+          onKeyDown={onKeyDown}
           renderElement={renderElement}
           renderLeaf={renderLeaf}
           spellCheck={settings.spellCheck}
