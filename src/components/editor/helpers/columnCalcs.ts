@@ -1,6 +1,5 @@
 import { Editor, Node as SlateNode, Path } from 'slate'
 import { ReactEditor } from 'slate-react'
-import settings from '../settings'
 import { ColumnNode, RowNode } from '../types'
 
 //const GRID_SIZE = settings.MAX_COL_SIZE

@@ -1,65 +1,13 @@
 import React from 'react'
-import { Editor, Element as SlateElement, Path, Transforms } from 'slate'
 import { useSlate } from 'slate-react'
 import Button from '../../ui/button'
+import {
+  addColumn,
+  canAddColumn,
+  canRemoveColumn,
+  removeColumn,
+} from '../helpers/columnTransform'
 import { useSettings } from '../hooks/useSettings'
-
-const MAX_COLUMN_SIZE = 6
-
-const canAddColumn = (editor: Editor): boolean => {
-  const [match] = Editor.nodes(editor, {
-    match: n =>
-      SlateElement.isElement(n) &&
-      n.type === 'row' &&
-      n.children.length < MAX_COLUMN_SIZE,
-    mode: 'all',
-  })
-  return !!match
-}
-
-const canRemoveColumn = (editor: Editor): boolean => {
-  const [match] = Editor.nodes(editor, {
-    match: n =>
-      SlateElement.isElement(n) && n.type === 'row' && n.children.length > 1,
-    mode: 'all',
-  })
-  /*const [node] = Editor.nodes(editor, {
-    match: n => SlateElement.isElement(n) && n.type === 'column',
-    mode: 'all',
-  })
-
-  return !!match && node && !isFirstColumn(editor, node[0] as ColumnNode)*/
-  return !!match
-}
-
-const addColumn = (editor: Editor) => {
-  const [[_, path]] = Editor.nodes(editor, {
-    match: n => SlateElement.isElement(n) && n.type === 'column',
-    mode: 'highest',
-  })
-  const nextPath = Path.next(path)
-  Transforms.insertNodes(
-    editor,
-    {
-      type: 'column',
-      children: [
-        {
-          type: 'paragraph',
-          children: [],
-        },
-      ],
-    },
-    { at: nextPath }
-  )
-}
-
-const removeColumn = (editor: Editor) => {
-  const [[_, path]] = Editor.nodes(editor, {
-    match: n => SlateElement.isElement(n) && n.type === 'column',
-    mode: 'highest',
-  })
-  Transforms.mergeNodes(editor, { at: path })
-}
 
 function GridButtons() {
   const editor = useSlate()
